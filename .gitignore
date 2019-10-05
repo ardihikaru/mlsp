@@ -15,6 +15,9 @@ penv/
 migrations/
 __pycache__/
 
+# Ignore Jupyter Notebook logs
+.ipynb_checkpoints
+
 # Ignore VSCode Settings
 .vscode/
 
