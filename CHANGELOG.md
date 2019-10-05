@@ -1,3 +1,8 @@
+## 1.1.0 (October 06, 2019)
+  - Refactoring coding
+  - Merge branch 'hw1' into develop
+  - Merge branch 'hw1' into develop
+
 ## 1.0 (October 06, 2019)
   - added new references
   - fixed typo in graph, from 'MSE' into 'MLE'
