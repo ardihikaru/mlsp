@@ -1,0 +1,16 @@
+## 1.0 (October 06, 2019)
+  - added new references
+  - fixed typo in graph, from 'MSE' into 'MLE'
+  - updates: - finished hw1
+  - updates: - lali
+  - updates: - finished calculating MLE dataset
+  - updates: - ongoing: hw1 for MLE Estimation.
+  - updated some
+  - trying some codes and try completing the hw
+
+## 0.2.0 (十月 01, 2019)
+  - added bump file and .gitignore
+
+## 0.1.0 (十月 01, 2019)
+  - Initial commit
+
