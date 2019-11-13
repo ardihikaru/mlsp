@@ -3,8 +3,8 @@ from matplotlib import pyplot as plt
 from hw3.libs.common.dataset import ImgDataset
 
 class PCA(ImgDataset):
-    def __init__(self, img_size, n_dataset, n_comp):
-        super().__init__(img_size, n_dataset)
+    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None):
+        super().__init__(img_size, n_dataset, img_dataset_path)
         self.n_comp = n_comp
 
     """
@@ -155,8 +155,15 @@ class PCA(ImgDataset):
         return error, error_var
 
     def plot_sample_result(self, data, rec_data):
+        # print(" ** DISINI ..")
+        # print(data.shape)
+        # print(data)
         ori_data = data[:, 0].reshape(self.img_size, self.img_size)
         rec_data = rec_data[:, 0].reshape(self.img_size, self.img_size)
+
+        # print(len(ori_data))
+        # print(len(ori_data[0]))
+        # print(ori_data)
 
         f, (ax1, ax2) = plt.subplots(1, 2)
         f.suptitle('PCA comparison with #Dim = %s' % self.n_comp)
@@ -167,6 +174,7 @@ class PCA(ImgDataset):
         plt.show()
 
     def plot_sample_multi_result(self, data, rec_data_list):
+        # ori_data = data[:, 0].reshape(self.img_size, self.img_size)
         ori_data = data[:, 0].reshape(self.img_size, self.img_size)
 
         # fig4, axarr = plt.subplots(3,2,figsize=(8,8))
