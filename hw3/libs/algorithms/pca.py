@@ -3,9 +3,13 @@ from matplotlib import pyplot as plt
 from hw3.libs.common.dataset import ImgDataset
 
 class PCA(ImgDataset):
-    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None):
+    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None, input_index=None):
         super().__init__(img_size, n_dataset, img_dataset_path)
         self.n_comp = n_comp
+
+        self.input_index = None
+        if input_index is not None:
+            self.input_index = input_index
 
     """
     Step for PCA:
@@ -51,6 +55,10 @@ class PCA(ImgDataset):
             print("\n >>> err_var[%s] = %s" % (i, self.err_var))
 
         self.plot_sample_multi_result(self.data, rec_data_list)
+        # if self.input_index is None:
+        #     self.plot_sample_multi_result(self.data, rec_data_list)
+        # else:
+        #     self.plot_sample_multi_result_multi_index(self.data, rec_data_list)
 
     def get_error(self):
         return self.error
@@ -174,7 +182,6 @@ class PCA(ImgDataset):
         plt.show()
 
     def plot_sample_multi_result(self, data, rec_data_list):
-        # ori_data = data[:, 0].reshape(self.img_size, self.img_size)
         ori_data = data[:, 0].reshape(self.img_size, self.img_size)
 
         # fig4, axarr = plt.subplots(3,2,figsize=(8,8))
@@ -188,5 +195,23 @@ class PCA(ImgDataset):
             axarr[i, 1].set_title('Compressed with n_comp = %s' % self.n_comp[i])
             axarr[i, 1].axis('off')
         plt.show()
+
+    # def plot_sample_multi_result_multi_index(self, data, rec_data_list):
+    #     ori_data = data[:, 0].reshape(self.img_size, self.img_size)
+    #     ori_data = []
+    #     for j in range(0, len(self.input_index)):
+    #         ori_data.append(data[:, j].reshape(self.img_size, self.img_size))
+    #
+    #     # fig4, axarr = plt.subplots(3,2,figsize=(8,8))
+    #     fig4, axarr = plt.subplots(4, 2, figsize=(9, 9))
+    #     for i in range(0, len(self.n_comp)):
+    #         tmp_rec_data = rec_data_list[i][:, 0].reshape(self.img_size, self.img_size)
+    #         axarr[i, 0].imshow(ori_data[i], cmap='gray', interpolation='none')
+    #         axarr[i, 0].set_title('Original Image')
+    #         axarr[i, 0].axis('off')
+    #         axarr[i, 1].imshow(tmp_rec_data, cmap='gray', interpolation='none')
+    #         axarr[i, 1].set_title('Compressed with n_comp = %s' % self.n_comp[i])
+    #         axarr[i, 1].axis('off')
+    #     plt.show()
 
 

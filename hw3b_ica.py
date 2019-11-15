@@ -10,7 +10,6 @@ from hw3.libs.algorithms.ica import ICA
 # o_img_size = 800
 o_img_size = 28
 
+# ica = ICA(o_img_size)
 ica = ICA(o_img_size)
 ica.run()
-
-print(" ** DONE !")
