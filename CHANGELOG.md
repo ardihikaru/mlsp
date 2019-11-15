@@ -1,3 +1,7 @@
+## 2.0.1 (十一月 15, 2019)
+  - hotfixed: - refactoring hw1 - testing hw1 and make sure it works
+  - Merge branch 'release-2.0' into develop
+
 ## 2.0 (十一月 15, 2019)
   - Merge branch 'hw3' into develop
   - updates: - finished hw3b with PCA, ICA, and NMF
