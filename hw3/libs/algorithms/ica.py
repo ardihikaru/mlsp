@@ -38,11 +38,11 @@ class ICA(BlendImgDataset):
         Di = LA.sqrtm(LA.inv(D))
         # Perform whitening. xn is the whitened matrix.
         xn = np.dot(Di, np.dot(np.transpose(E), self.img_data))
-        print(" ************* SHAPE xn", xn.shape)
+        # print(" ************* SHAPE xn", xn.shape)
 
         # Try to plot only the first 4 images to test out the result
         selected_xn = xn[:4, :]
-        print(" ************* SHAPE selected_xn", selected_xn.shape)
+        # print(" ************* SHAPE selected_xn", selected_xn.shape)
 
         # return xn
         return selected_xn
