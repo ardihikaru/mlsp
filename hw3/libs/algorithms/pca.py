@@ -3,8 +3,8 @@ from matplotlib import pyplot as plt
 from hw3.libs.common.dataset import ImgDataset
 
 class PCA(ImgDataset):
-    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None, input_index=None):
-        super().__init__(img_size, n_dataset, img_dataset_path)
+    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None, input_index=None, man_dataset=None):
+        super().__init__(img_size, n_dataset, img_dataset_path, man_dataset=man_dataset)
         self.n_comp = n_comp
 
         self.input_index = None
@@ -166,8 +166,14 @@ class PCA(ImgDataset):
         # print(" ** DISINI ..")
         # print(data.shape)
         # print(data)
-        ori_data = data[:, 0].reshape(self.img_size, self.img_size)
-        rec_data = rec_data[:, 0].reshape(self.img_size, self.img_size)
+        idx = 1
+        # print(" ****** ", type(data[:, idx]))
+        ori_data = data[:, idx].reshape(self.img_size, self.img_size)
+        rec_data = rec_data[:, idx].reshape(self.img_size, self.img_size)
+
+        # Default, ONLY index = 0
+        # ori_data = data[:, 0].reshape(self.img_size, self.img_size)
+        # rec_data = rec_data[:, 0].reshape(self.img_size, self.img_size)
 
         # print(len(ori_data))
         # print(len(ori_data[0]))
