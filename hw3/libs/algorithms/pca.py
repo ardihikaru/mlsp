@@ -3,8 +3,8 @@ from matplotlib import pyplot as plt
 from hw3.libs.common.dataset import ImgDataset
 
 class PCA(ImgDataset):
-    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None, input_index=None):
-        super().__init__(img_size, n_dataset, img_dataset_path)
+    def __init__(self, img_size, n_dataset, n_comp, img_dataset_path=None, input_index=None, man_dataset=None):
+        super().__init__(img_size, n_dataset, img_dataset_path, man_dataset=man_dataset)
         self.n_comp = n_comp
 
         self.input_index = None
@@ -22,7 +22,7 @@ class PCA(ImgDataset):
     7. Computing reconstruction error
     8. Printing the graph
     """
-    def run(self):
+    def run(self, plot=True):
         centered_data, mean_vector = self.center_data()
         corr = self.correlation_matrix(centered_data)
         eigvals, eigvecs = self.eigen_decomposition(corr)
@@ -35,7 +35,8 @@ class PCA(ImgDataset):
         print(" >>> Error = ", self.error)
         print("\n >>> err_var = ", self.err_var)
 
-        self.plot_sample_result(self.data, reconstructed_data)
+        if plot:
+            self.plot_sample_result(self.data, reconstructed_data)
 
     def run_multiple(self):
         centered_data, mean_vector = self.center_data()
@@ -137,13 +138,13 @@ class PCA(ImgDataset):
 
     def reconstruct_data(self, princ_comps, proj_matrix, mean_vector):
         print('\nReconstructing the data...')
-        reconstructed_data = (proj_matrix).dot(princ_comps) + mean_vector
+        self.reconstructed_data = (proj_matrix).dot(princ_comps) + mean_vector
         # reconstructed_data = proj_matrix.dot(princ_comps) + mean_vector # kudu ngene kan?
 
         # if (globalv.print_results):
         #     print('Reconstructed data: \n', reconstructed_data)
 
-        return reconstructed_data
+        return self.reconstructed_data
 
     def compute_rec_error(self, data, rec_data):
         print('\nComputing reconstruction error...')
@@ -162,12 +163,24 @@ class PCA(ImgDataset):
 
         return error, error_var
 
+    def get_reconstructed_data(self):
+        return self.reconstructed_data
+
+    def get_original_data(self):
+        return self.data
+
     def plot_sample_result(self, data, rec_data):
         # print(" ** DISINI ..")
         # print(data.shape)
         # print(data)
-        ori_data = data[:, 0].reshape(self.img_size, self.img_size)
-        rec_data = rec_data[:, 0].reshape(self.img_size, self.img_size)
+        idx = 1
+        # print(" ****** ", type(data[:, idx]))
+        ori_data = data[:, idx].reshape(self.img_size, self.img_size)
+        rec_data = rec_data[:, idx].reshape(self.img_size, self.img_size)
+
+        # Default, ONLY index = 0
+        # ori_data = data[:, 0].reshape(self.img_size, self.img_size)
+        # rec_data = rec_data[:, 0].reshape(self.img_size, self.img_size)
 
         # print(len(ori_data))
         # print(len(ori_data[0]))

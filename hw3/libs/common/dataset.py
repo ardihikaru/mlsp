@@ -3,13 +3,12 @@ import glob
 from matplotlib.image import imread
 
 class ImgDataset():
-    def __init__(self, img_size=28, N=982, img_dataset_path=None):
+    def __init__(self, img_size=28, N=982, img_dataset_path=None, man_dataset=None):
         self.img_size = img_size
         self.N = N # total number of image
         self.D = self.img_size**2 # dimension of the images dataset; D = (img_size x img_size)
 
         self.img = np.zeros((self.img_size, self.img_size))
-        self.data = np.zeros((self.D, self.N))
 
         self.source_img_path = "./hw3/four_dataset/"
         self.img_ext = ".jpg"
@@ -17,7 +16,11 @@ class ImgDataset():
         if img_dataset_path is not None:
             self.source_img_path = img_dataset_path
 
-        self.__load_default_imgs()
+        if man_dataset is not None:
+            self.data = man_dataset # this is purposely used for Homework 4
+        else:
+            self.data = np.zeros((self.D, self.N))
+            self.__load_default_imgs()
 
     def __load_default_imgs(self):
         i = 0
