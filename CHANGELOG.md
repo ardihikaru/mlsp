@@ -1,3 +1,12 @@
+## 3.0 (十一月 29, 2019)
+  - Merge branch 'hw4' into develop
+  - updates: - completed HW4 along with the refactoring
+  - updates: - refactoring codes
+  - updates: - finished HW4: Using PCA, ISOMAP, and LLE Algorithms - refactoring and cleaning up codes for HW4-1
+  - updates: - modified PCA algorithm as per required in the project - finished HW4 for PCA - finished HW4 for ISOMAP
+  - updates: - PCA done. - LLE and ISOMAP stil using Library
+  - Merge branch 'hotfix-2.0.1' into develop
+
 ## 2.0.1 (十一月 15, 2019)
   - hotfixed: - refactoring hw1 - testing hw1 and make sure it works
   - Merge branch 'release-2.0' into develop
