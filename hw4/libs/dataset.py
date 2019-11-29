@@ -10,8 +10,8 @@ class Dataset():
 
     def __load_img_dataset(self):
         self.img_size = 28
-        self.shapes = (self.img_size, self.img_size)
-        self.npz_dataset = "./hw4/digits-labels.npz"
+        # self.shapes = (self.img_size, self.img_size)
+        self.npz_dataset = "./hw4/dataset/digits-labels.npz"
 
     def __extract_img_dataset(self):
         compressed = np.load(self.npz_dataset)
@@ -22,20 +22,15 @@ class Dataset():
     def __capture_indexes(self):
         # %% Capture only digit 5 and store each index-i into variables "idx_5s"
         self.idx_5s = []
-        # tmp_idx = 0
         for i in range(0, self.max_digit):
             if int(self.l[i]) == 5:
                 self.idx_5s.append(i)
-                # print(d[:, i])
-        # print(self.idx_5s)
 
     def __storing_digit_5s(self):
         # %% Store data of digit 5 into variable "fives"
         self.fives = np.zeros(((self.img_size ** 2), len(self.idx_5s)))
         for i in range(0, len(self.idx_5s)):
             self.fives[:, i] = self.d[:, self.idx_5s[i]]
-        # print(len(fives))
-        # print(len(fives[0]))
 
     def get_5s(self):
         return self.fives

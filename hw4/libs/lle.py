@@ -1,8 +1,6 @@
 # Source: https://github.com/lxcnju/Locally-Linear-Embedding/blob/master/lle.py
 
 import numpy as np
-# from sklearn.metrics import pairwise_distances
-# from scipy.sparse.linalg import eigs as sparse_eigs
 
 class LLE():
     def __init__(self, k_neighbors, low_dims):
@@ -28,8 +26,7 @@ class LLE():
         @params X : 2-d numpy.array (n_samples, high_dims)
         '''
         n_samples = X.shape[0]
-        # calculate pair-wise distance
-        # dist_mat = pairwise_distances(X)
+        # calculate pair-wise distance using Euclidian Distance
         dist_mat = self.calc_distance(X)
         # index of neighbors, not include self
         neighbors = np.argsort(dist_mat, axis = 1)[:, 1 : self.k_neighbors + 1]
