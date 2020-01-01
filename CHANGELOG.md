@@ -1,3 +1,8 @@
+## 4.0 (一月 01, 2020)
+  - snippet code for final project
+  - final project visualization
+  - Merge branch 'release-3.0' into develop
+
 ## 3.0 (十一月 29, 2019)
   - Merge branch 'hw4' into develop
   - updates: - completed HW4 along with the refactoring
