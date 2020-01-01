@@ -3,7 +3,8 @@ import glob
 from matplotlib.image import imread
 
 class FaceDataset():
-    def __init__(self, img_size=28, N=982, img_dataset_path=None, man_dataset=None):
+    # def __init__(self, img_size=28, N=982, img_dataset_path=None, man_dataset=None):
+    def __init__(self, img_size=112, N=19, img_dataset_path=None, man_dataset=None):
         self.img_size = img_size
         self.N = N # total number of image
         self.D = self.img_size**2 # dimension of the images dataset; D = (img_size x img_size)
@@ -11,7 +12,7 @@ class FaceDataset():
         self.img = np.zeros((self.img_size, self.img_size))
 
         # self.source_img_path = "./hw3/four_dataset/"
-        self.source_img_path = "./finalproject/datasets/original_sizes/"
+        self.source_img_path = "./finalproject/datasets/1/"
         self.img_ext = ".jpg"
 
         if img_dataset_path is not None:
