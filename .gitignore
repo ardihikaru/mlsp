@@ -9,6 +9,7 @@
 
 # Ignore Important Folders
 resources/
+hw5/dataset
 
 # Ignore Python 3 Environment
 penv/
