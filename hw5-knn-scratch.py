@@ -49,3 +49,4 @@ if __name__ == '__main__':
     plt.show()
     fig.savefig('hw5/results/result-knn-scratch.png', dpi=fig.dpi)
     save_to_csv('exec-knn-scratch.csv', exec_times) # X is an array
+    save_to_csv('knn-test-scores-scratch.csv', test_scores)

@@ -54,6 +54,7 @@ if __name__ == '__main__':
     plt.show()
     fig.savefig('hw5/results/result-knn-theano.png', dpi=fig.dpi)
     save_to_csv('exec-knn-theano.csv', exec_times)
+    save_to_csv('knn-test-scores-theano.csv', test_scores)
 
 
 
