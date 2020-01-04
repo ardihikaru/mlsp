@@ -1,9 +1,3 @@
-import theano, csv
-import numpy as np
-
-from theano import tensor as T
-from random import randint, shuffle
-
 from hw5.libs.common.dataset import Dataset
 from hw5.libs.common.util import int_to_tuple, save_to_csv
 from hw5.libs.algo.knn_theano import KNNTheano
