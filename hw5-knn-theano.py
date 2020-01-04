@@ -19,6 +19,8 @@ if __name__ == '__main__':
     train_scores = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     test_scores = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     exec_times = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    best_test_score = 0
+    stored_accuracy = [0, 0] # [<acc>, <k-th>
 
     # Define number of iteration (K)
     K = 50 # min. value = 10
@@ -45,6 +47,11 @@ if __name__ == '__main__':
         print("Time to compute test accuracy:", (datetime.now() - t0), "Test size:", len(Y_test))
         exec_times.append((datetime.now() - t0).total_seconds())
 
+        # update best accuracy (for comparison purpose later)
+        if test_score > best_test_score:
+            best_test_score = test_score
+            stored_accuracy = [test_score, k]
+
         # np.savetxt(fname=csv_path + 'exec-knn-theano.csv', X=str("dsd"), delimiter=',', fmt='%d')
 
     fig = plt.figure()
@@ -55,6 +62,7 @@ if __name__ == '__main__':
     fig.savefig('hw5/results/result-knn-theano.png', dpi=fig.dpi)
     save_to_csv('exec-knn-theano.csv', exec_times)
     save_to_csv('knn-test-scores-theano.csv', test_scores)
+    save_to_csv('knn-best-acc-theano.csv', stored_accuracy)
 
 
 

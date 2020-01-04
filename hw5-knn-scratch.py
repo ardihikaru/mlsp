@@ -14,6 +14,8 @@ if __name__ == '__main__':
     train_scores = []
     test_scores = []
     exec_times = []
+    best_test_score = 0
+    stored_accuracy = [0, 0] # [<acc>, <k-th>]
 
     # Define number of iteration (K)
     K = 50
@@ -42,6 +44,11 @@ if __name__ == '__main__':
         print("Time to compute test accuracy:", (datetime.now() - t0), "Test size:", len(Y_test))
         exec_times.append((datetime.now() - t0).total_seconds())
 
+        # update best accuracy (for comparison purpose later)
+        if test_score > best_test_score:
+            best_test_score = test_score
+            stored_accuracy = [test_score, k]
+
     fig = plt.figure()
     plt.plot(ks, train_scores, label='train scores')
     plt.plot(ks, test_scores, label='test scores')
@@ -50,3 +57,4 @@ if __name__ == '__main__':
     fig.savefig('hw5/results/result-knn-scratch.png', dpi=fig.dpi)
     save_to_csv('exec-knn-scratch.csv', exec_times) # X is an array
     save_to_csv('knn-test-scores-scratch.csv', test_scores)
+    save_to_csv('knn-best-acc-scratch.csv', stored_accuracy)
