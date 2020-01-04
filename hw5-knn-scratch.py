@@ -40,6 +40,7 @@ if __name__ == '__main__':
         print("Test accuracy:", test_score)
         test_scores.append(test_score)
         print("Time to compute test accuracy:", (datetime.now() - t0), "Test size:", len(Y_test))
+        exec_times.append((datetime.now() - t0).total_seconds())
 
     fig = plt.figure()
     plt.plot(ks, train_scores, label='train scores')
@@ -47,4 +48,4 @@ if __name__ == '__main__':
     plt.legend()
     plt.show()
     fig.savefig('hw5/results/result-knn-scratch.png', dpi=fig.dpi)
-    save_to_csv('exec-knn-sklearn.csv', exec_times) # X is an array
+    save_to_csv('exec-knn-scratch.csv', exec_times) # X is an array
