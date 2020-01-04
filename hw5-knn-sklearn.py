@@ -1,6 +1,3 @@
-import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
-
 from hw5.libs.common.dataset import Dataset
 from hw5.libs.common.util import int_to_tuple
 from hw5.libs.algo.knn_sklearn import KNNSkLearn
@@ -39,6 +36,8 @@ if __name__ == '__main__':
         test_scores.append(test_score)
         print("Time to compute test accuracy:", (datetime.now() - t0), "Test size:", len(Y_test))
 
+        # Result will be different in this way (below), since the training data will be trained only once.
+        # it resulted same prediction and accuracy, though we changed number of neighboar (k)
         # neigh = KNeighborsClassifier(n_neighbors=K)
         #
         # t0 = datetime.now()
