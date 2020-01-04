@@ -67,5 +67,6 @@ if __name__ == '__main__':
     plt.show()
     fig.savefig('hw5/results/result-knn-sklearn.png', dpi=fig.dpi)
     save_to_csv('exec-knn-sklearn.csv', exec_times) # X is an array
+    save_to_csv('knn-test-scores-sklearn.csv', test_scores)
 
 
