@@ -8,4 +8,4 @@ def int_to_tuple(Ks):
 
 def save_to_csv(fname, data):
     csv_path = 'hw5/dataset/saved_csv/'
-    np.savetxt(csv_path + 'exec-knn-theano.csv', data, delimiter=',')  # X is an array
+    np.savetxt(csv_path + fname, data, delimiter=',')  # X is an array
