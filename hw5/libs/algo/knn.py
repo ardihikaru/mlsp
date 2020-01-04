@@ -19,11 +19,11 @@ class KNN(object):
         self.X = X
         self.y = y
 
-    def predict(self, X):
+    def predict(self, X, Y_data):
         y = np.zeros(len(X))
         for i, x in enumerate(X): # test points
             sl = SortedList() # stores (distance, class) tuples
-            for j,xt in enumerate(self.X): # training points
+            for j, xt in enumerate(self.X): # training points
                 diff = x - xt
                 d = diff.dot(diff)
                 if len(sl) < self.k:
@@ -40,11 +40,11 @@ class KNN(object):
             votes = {}
             for _, v in sl:
                 # print("v:", v)
-                votes[v] = votes.get(v,0) + 1
-            # print("votes:", votes, "true:", Ytest[i])
+                votes[v] = votes.get(v, 0) + 1
+            # print("votes:", votes, "true:", Y_data[i])
             max_votes = 0
             max_votes_class = -1
-            for v,count in iteritems(votes):
+            for v, count in iteritems(votes):
                 if count > max_votes:
                     max_votes = count
                     max_votes_class = v
@@ -52,5 +52,5 @@ class KNN(object):
         return y
 
     def score(self, X, Y):
-        P = self.predict(X)
+        P = self.predict(X, Y)
         return np.mean(P == Y)
