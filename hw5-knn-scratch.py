@@ -5,7 +5,7 @@
 import matplotlib.pyplot as plt
 from hw5.libs.algo.knn import KNN
 from hw5.libs.common.dataset import Dataset
-from hw5.libs.common.util import int_to_tuple
+from hw5.libs.common.util import int_to_tuple, save_to_csv
 from datetime import datetime
 
 if __name__ == '__main__':
@@ -13,9 +13,10 @@ if __name__ == '__main__':
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
     train_scores = []
     test_scores = []
+    exec_times = []
 
     # Define number of iteration (K)
-    K = 20
+    K = 50
     ks = int_to_tuple(K) # used to plot the results
 
     # Start KNN: Scratch
@@ -46,3 +47,4 @@ if __name__ == '__main__':
     plt.legend()
     plt.show()
     fig.savefig('hw5/results/result-knn-scratch.png', dpi=fig.dpi)
+    save_to_csv('exec-knn-sklearn.csv', exec_times) # X is an array

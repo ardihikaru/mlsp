@@ -26,24 +26,24 @@ class Dataset():
     # Max train dataset = 60k
     def __extract_mnist_train(self, limit):
         # fix bug: max limit = 60k
-        if limit > 60000:
-            limit = 60000
         X, Y = loadlocal_mnist(
             images_path=self.dataset_path + 'train-images.idx3-ubyte',
             labels_path=self.dataset_path + 'train-labels.idx1-ubyte')
         if limit is not None:
+            if limit > 60000:
+                limit = 60000
             X, Y = X[:limit], Y[:limit]
         return X, Y
 
     # Max test dataset = 10k
     def __extract_mnist_test(self, limit):
         # fix bug: max limit = 10k
-        if limit > 10000:
-            limit = 10000
         X, Y = loadlocal_mnist(
             images_path=self.dataset_path + 't10k-images.idx3-ubyte',
             labels_path=self.dataset_path + 't10k-labels.idx1-ubyte')
         if limit is not None:
+            if limit > 60000:
+                limit = 60000
             X, Y = X[:limit], Y[:limit]
         return X, Y
 

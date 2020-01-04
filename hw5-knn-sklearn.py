@@ -1,5 +1,5 @@
 from hw5.libs.common.dataset import Dataset
-from hw5.libs.common.util import int_to_tuple
+from hw5.libs.common.util import int_to_tuple, save_to_csv
 from hw5.libs.algo.knn_sklearn import KNNSkLearn
 from datetime import datetime
 import matplotlib.pyplot as plt
@@ -9,9 +9,10 @@ if __name__ == '__main__':
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
     train_scores = []
     test_scores = []
+    exec_times = []
 
     # Define number of iteration (K)
-    K = 20
+    K = 50
     ks = int_to_tuple(K)  # used to plot the results
 
     # Start KNN: sklearn
@@ -35,6 +36,7 @@ if __name__ == '__main__':
         print("Test accuracy:", test_score)
         test_scores.append(test_score)
         print("Time to compute test accuracy:", (datetime.now() - t0), "Test size:", len(Y_test))
+        exec_times.append((datetime.now() - t0).total_seconds())
 
         # Result will be different in this way (below), since the training data will be trained only once.
         # it resulted same prediction and accuracy, though we changed number of neighboar (k)
@@ -64,4 +66,6 @@ if __name__ == '__main__':
     plt.legend()
     plt.show()
     fig.savefig('hw5/results/result-knn-sklearn.png', dpi=fig.dpi)
+    save_to_csv('exec-knn-sklearn.csv', exec_times) # X is an array
+
 
