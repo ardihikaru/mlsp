@@ -37,7 +37,6 @@ if __name__ == '__main__':
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
 
     print("sebelum PCA = ", X_train.shape)
-
     # Dimensional reduction
     # pca = PCA(n_components=2, whiten=False)
     pca = PCA(n_components=64, whiten=False)
