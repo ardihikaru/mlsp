@@ -9,6 +9,12 @@
 
 # Ignore Important Folders
 resources/
+hw5/dataset/t10k-images.idx3-ubyte
+hw5/dataset/t10k-labels.idx1-ubyte
+hw5/dataset/train-images.idx3-ubyte
+hw5/dataset/train-labels.idx1-ubyte
+hw5/dataset/saved_csv/images.csv
+#hw5/dataset
 
 # Ignore Python 3 Environment
 penv/
