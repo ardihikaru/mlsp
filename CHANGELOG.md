@@ -1,3 +1,7 @@
+## 5.1.0 (一月 06, 2020)
+  - added new results
+  - Merge branch 'release-5.0' into feature/hw5
+
 ## 5.0 (一月 06, 2020)
   - finished hw5
   - finished learning KDE algortihm and performing some experiments. next: finishing KDE main Class with some results and evaluations

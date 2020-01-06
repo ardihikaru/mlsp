@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 if __name__ == '__main__':
     # dataset = Dataset(train_data=1000, test_data=100)
     # dataset = Dataset(train_data=40, test_data=10)
-    dataset = Dataset(train_data=80, test_data=20)
+    # dataset = Dataset(train_data=80, test_data=20)
+    dataset = Dataset(train_data=800, test_data=200)
     # dataset = Dataset()
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
     train_scores = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -29,13 +30,13 @@ if __name__ == '__main__':
         knn.fit(X_train, Y_train)
 
         t0 = datetime.now()
-        train_score = knn.score(X_train, Y_train)
+        train_score = knn.score(X_train, Y_train) / 100
         train_scores.append(train_score)
         print("Train accuracy:", train_score)
         print("Time to compute train accuracy:", (datetime.now() - t0), "Train size:", len(Y_train))
 
         t0 = datetime.now()
-        test_score = knn.score(X_test, Y_test)
+        test_score = knn.score(X_test, Y_test) / 100
         print("Test accuracy:", test_score)
         test_scores.append(test_score)
         print("Time to compute test accuracy:", (datetime.now() - t0), "Test size:", len(Y_test))

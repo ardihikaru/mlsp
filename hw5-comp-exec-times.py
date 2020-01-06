@@ -23,6 +23,7 @@ if __name__ == '__main__':
     scratch = read_data('exec-knn-scratch.csv')
     sklearn = read_data('exec-knn-sklearn.csv')
     theano = read_data('exec-knn-theano.csv')
+    theano_colab = read_data('exec-knn-theano-google_colab.csv')
 
     print(" total len = ", len(scratch), len(sklearn), len(theano))
 
@@ -30,6 +31,7 @@ if __name__ == '__main__':
     plt.plot(ks, scratch, label='scratch exec. time')
     plt.plot(ks, sklearn, label='sklearn exec. time')
     plt.plot(ks, theano, label='theano exec. time')
+    plt.plot(ks, theano_colab, label='theano G-Colab exec. time')
     plt.legend()
     plt.show()
     fig.savefig('hw5/results/result-knn-compare-exec-times.png', dpi=fig.dpi)
