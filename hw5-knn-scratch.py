@@ -9,7 +9,9 @@ from hw5.libs.common.util import int_to_tuple, save_to_csv
 from datetime import datetime
 
 if __name__ == '__main__':
-    dataset = Dataset(train_data=80, test_data=20)
+    # dataset = Dataset(train_data=80, test_data=20)
+    # dataset = Dataset(train_data=800, test_data=200)
+    dataset = Dataset()
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
     train_scores = []
     test_scores = []

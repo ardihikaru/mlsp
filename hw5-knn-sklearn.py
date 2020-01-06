@@ -5,7 +5,8 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-    dataset = Dataset(train_data=80, test_data=20)
+    # dataset = Dataset(train_data=80, test_data=20)
+    dataset = Dataset(train_data=800, test_data=200)
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
     train_scores = []
     test_scores = []

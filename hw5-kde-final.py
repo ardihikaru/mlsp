@@ -8,9 +8,9 @@ from sklearn.decomposition import PCA
 if __name__ == '__main__':
     # dataset = Dataset(train_data=1000, test_data=100)
     # dataset = Dataset(train_data=40, test_data=10)
-    dataset = Dataset(train_data=80, test_data=20)
+    # dataset = Dataset(train_data=80, test_data=20)
     # dataset = Dataset(train_data=800, test_data=200)
-    # dataset = Dataset()
+    dataset = Dataset()
     X_train, Y_train, X_test, Y_test = dataset.get_dataset()
     train_scores = []
     test_scores = []
