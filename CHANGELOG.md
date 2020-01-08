@@ -1,3 +1,12 @@
+## 6.0 (一月 09, 2020)
+  - finished coding! added testbed for different n_clusters
+  - added gmm: testbed accuracy
+  - added another testbed: all digits
+  - updates: - finished kmeans with each different analysis
+  - updates: - added HW6 - finished kmeans accuracy measurement
+  - Merge branch 'release-5.1' into develop
+  - Merge branch 'release-5.0' into develop
+
 ## 5.1.0 (一月 06, 2020)
   - added new results
   - Merge branch 'release-5.0' into feature/hw5
