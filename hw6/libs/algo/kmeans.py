@@ -1,6 +1,4 @@
-from future.utils import iteritems # pip install future
 import numpy as np
-from sortedcontainers import SortedList
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 
