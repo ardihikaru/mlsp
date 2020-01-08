@@ -7,7 +7,7 @@ from sklearn.decomposition import PCA
 import seaborn as sns; sns.set()  # for plot styling
 import numpy as np
 
-from hw6.libs.algo.kmeans import MyKMeans
+from hw6.libs.algo.gmm import MyGMM
 
 if __name__ == '__main__':
     # dataset = Dataset(train_data=1000, test_data=100)
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     # n_clusters = [2, 3] # from n=2 ~ n=10 (max)
 
     # Start simulation ...
-    kmeans, reduced_X_train, y_kmeans = None, None, None
+    gmm, reduced_X_train, y_gmm, unique_labels = None, None, None, None
     for i in range(len(n_clusters)):
         selected_digits = get_selected_digits(n_clusters[i])
         X_train, Y_train = filter_dataset(selected_digits, init_X_train, init_Y_train)
@@ -40,14 +40,16 @@ if __name__ == '__main__':
         reduced_X_train = pca.fit_transform(X_train)
 
         unique_labels = get_unique_list(Y_train)
-        kmeans = MyKMeans(n_clusters=len(unique_labels))  # n_clusters = total number of unique digits (labels)
+        gmm = MyGMM(len(unique_labels))  # n_clusters = total number of unique digits (labels)
 
-        # Start KMeans: Sklearn
+        # Start gmm: Sklearn
         highest_acc = 0.0
         for j in range(K):
-            kmeans.fit(X_train)
-            y_kmeans = kmeans.predict(X_train)
-            accuracy = kmeans.eval_acc(y_kmeans, Y_train) * 100
+            # gmm.fit(X_train)
+            gmm.fit(reduced_X_train)
+            # y_gmm = gmm.predict(X_train)
+            y_gmm = gmm.predict(reduced_X_train)
+            accuracy = gmm.eval_acc(y_gmm, Y_train) * 100
             # acc_scores.append(accuracy)
             highest_acc = accuracy if accuracy > highest_acc else highest_acc
 
@@ -64,10 +66,11 @@ if __name__ == '__main__':
     plt.xlabel('Digit (D)')
     plt.title('Eval. with diff. n_clusters; Dataset size = %s' % str(len(Y_train)))
     plt.show()
-    fig.savefig('hw6/results/result-kmeans-n_clusters.png', dpi=fig.dpi)
+    fig.savefig('hw6/results/result-gmm-n_clusters.png', dpi=fig.dpi)
 
     # # Plt results
-    centers = kmeans.cluster_centers_()
-    pca_center = PCA(n_components=2, whiten=False)
-    reduced_centers = pca_center.fit_transform(centers)
-    kmeans.visualize(reduced_X_train, Y_train, y_kmeans, reduced_centers, "result-kmeans-x_clusters")
+    gmm.visualize_predict_proba(reduced_X_train, Y_train, y_gmm, len(unique_labels), "result-gmm-x_clusters")
+    # centers = gmm.cluster_centers_()
+    # pca_center = PCA(n_components=2, whiten=False)
+    # reduced_centers = pca_center.fit_transform(centers)
+    # gmm.visualize(reduced_X_train, Y_train, y_gmm, reduced_centers, "result-gmm-x_clusters")
