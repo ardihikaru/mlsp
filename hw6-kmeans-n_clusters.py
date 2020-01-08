@@ -27,8 +27,8 @@ if __name__ == '__main__':
     ks = int_to_tuple(K) # used to plot the results
 
     # simulate different number of clusters
-    # n_clusters = [2, 3, 4, 5, 6, 7, 8, 9, 10] # from n=2 ~ n=10 (max)
-    n_clusters = [2, 3] # from n=2 ~ n=10 (max)
+    n_clusters = [2, 3, 4, 5, 6, 7, 8, 9, 10] # from n=2 ~ n=10 (max)
+    # n_clusters = [2, 3] # from n=2 ~ n=10 (max)
 
     # Start simulation ...
     kmeans, reduced_X_train, y_kmeans = None, None, None
