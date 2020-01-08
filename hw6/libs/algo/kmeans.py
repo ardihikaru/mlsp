@@ -25,7 +25,7 @@ class MyKMeans:
         accuracy = np.sum(prob == Y_test).astype(float) / len(Y_test)
         return accuracy
 
-    def visualize(self, reduced_X_train, new_Y_train, y_kmeans, reduced_centers):
+    def visualize(self, reduced_X_train, new_Y_train, y_kmeans, reduced_centers, fname="result-kmeans"):
 
         fig = plt.figure()
         plt.scatter(reduced_X_train[:, 0], reduced_X_train[:, 1], c=new_Y_train, s=100, cmap='inferno')
@@ -37,4 +37,4 @@ class MyKMeans:
         plt.scatter(reduced_X_train[:, 0], reduced_X_train[:, 1], c=y_kmeans, s=50, cmap='viridis')
         plt.scatter(reduced_centers[:, 0], reduced_centers[:, 1], c='red', s=200, alpha=0.5)
         plt.show()
-        fig.savefig('hw6/results/result-kmeans.png', dpi=fig.dpi)
+        fig.savefig('hw6/results/%s.png' % fname, dpi=fig.dpi)

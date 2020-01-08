@@ -17,9 +17,8 @@ if __name__ == '__main__':
     # dataset = Dataset(train_data=80, test_data=20)
     dataset = Dataset(train_data=800, test_data=200)
     # dataset = Dataset()
-    X_train, Y_train, X_test, Y_test = dataset.get_dataset()
+    X_train, Y_train, _, _ = dataset.get_dataset()
     acc_scores = []
-    # stored_accuracy = [0, 0]  # [<acc>, <k-th>
 
     # Simulate clustering in K times.
     K = 50

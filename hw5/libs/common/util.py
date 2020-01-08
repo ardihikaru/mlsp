@@ -45,3 +45,10 @@ def filter_dataset(selected_digits, X_train, Y_train):
             new_X_train.append(X_train[i])
             new_Y_train.append(Y_train[i])
     return new_X_train, new_Y_train
+
+# Available Digit = {0, 1, 2, ..., 10}; MAX(n_clusters) = 10
+def get_selected_digits(n_clusters):
+    digits = []
+    for i in range(n_clusters):
+        digits.append(i)
+    return digits
