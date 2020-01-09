@@ -40,8 +40,7 @@ if __name__ == '__main__':
     }
     df = pd.DataFrame(data=d)
 
-    fig = plt.figure()
-    sns.catplot(x='metric', y='accuracy', hue='method', data=df, kind='bar', legend=False)
+    sns_plot = sns.catplot(x='metric', y='accuracy', hue='method', data=df, kind='bar', legend=False)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.show()
-    fig.savefig('hw6/results/result-kmeans_gmm-compare-accuracy.png', dpi=fig.dpi)
+    sns_plot.savefig('hw6/results/result-kmeans_gmm-compare-accuracy.png')

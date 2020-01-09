@@ -1,3 +1,9 @@
+## 6.1.2 (一月 09, 2020)
+  - bug fixed: unable to save seaborn-based plot
+  - Merge branch 'release-6.1.1' into develop
+  - Merge branch 'release-6.1' into develop
+  - Merge branch 'release-6.0' into develop
+
 ## 6.1.1 (一月 09, 2020)
   - removed unused codes
   - Merge branch 'release-6.1' into feature/hw6
