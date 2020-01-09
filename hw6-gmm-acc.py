@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA
 # import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()  # for plot styling
 import numpy as np
-
+from datetime import datetime
 from hw6.libs.algo.gmm import MyGMM
 
 if __name__ == '__main__':
@@ -41,9 +41,10 @@ if __name__ == '__main__':
     Default: DISABLED; you may enable this. 
     RESULT: In clustering, PCA does not affect the accuracy!
     '''
-    # pca_x_train = PCA(n_components=64, whiten=False)
+    # pca_x_train = PCA(n_components=2, whiten=False)
     # X_train = pca_x_train.fit_transform(X_train)
 
+    t0 = datetime.now()
     # Start GMM: Sklearn
     highest_acc = 0.0
     for i in range(K):
@@ -52,6 +53,8 @@ if __name__ == '__main__':
         accuracy = gmm.eval_acc(y_gmm, Y_train)
         acc_scores.append(accuracy)
         highest_acc = accuracy if accuracy > highest_acc else highest_acc
+
+    elapsed_time = datetime.now() - t0
 
     fig = plt.figure()
     mean_acc = str(round(np.mean(np.array(acc_scores)), 2))
@@ -64,4 +67,5 @@ if __name__ == '__main__':
     plt.show()
     fig.savefig('hw6/results/result-gmm-accuracy.png', dpi=fig.dpi)
 
-    save_to_csv('knn-best-acc-scratch.csv', stored_accuracy)
+    save_to_csv('gmm-acc.csv', acc_scores, "hw6")
+    save_to_csv('gmm-exec-time.csv', [elapsed_time.total_seconds()], "hw6")
