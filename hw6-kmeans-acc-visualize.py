@@ -7,7 +7,8 @@ from sklearn.decomposition import PCA
 import seaborn as sns; sns.set()  # for plot styling
 import numpy as np
 
-from hw6.libs.algo.gmm import MyGMM
+# from sklearn.cluster import KMeans
+from hw6.libs.algo.kmeans import MyKMeans
 
 if __name__ == '__main__':
     # dataset = Dataset(train_data=1000, test_data=100)
@@ -34,7 +35,7 @@ if __name__ == '__main__':
     reduced_X_train = pca.fit_transform(X_train)
 
     unique_labels = get_unique_list(Y_train)
-    gmm = MyGMM(n_clusters=len(unique_labels)) # n_clusters = total number of unique digits (labels)
+    kmeans = MyKMeans(n_clusters=len(unique_labels)) # n_clusters = total number of unique digits (labels)
 
     '''
     Do dimension Reduction first, and analyze the result
@@ -44,24 +45,15 @@ if __name__ == '__main__':
     # pca_x_train = PCA(n_components=64, whiten=False)
     # X_train = pca_x_train.fit_transform(X_train)
 
-    # Start GMM: Sklearn
-    highest_acc = 0.0
-    for i in range(K):
-        gmm.fit(X_train)
-        y_gmm = gmm.predict(X_train)
-        accuracy = gmm.eval_acc(y_gmm, Y_train)
-        acc_scores.append(accuracy)
-        highest_acc = accuracy if accuracy > highest_acc else highest_acc
+    # Sample without looping.
+    kmeans.fit(X_train)
+    y_kmeans = kmeans.predict(X_train)
+    accuracy = kmeans.eval_acc(y_kmeans, Y_train)
+    print(" >> accuracy = ", accuracy)
 
-    fig = plt.figure()
-    mean_acc = str(round(np.mean(np.array(acc_scores)), 2))
-    title = "Highest (Red) = " + str(round(highest_acc, 2)) + "; AVG (Black) = " + mean_acc
-    plt.title(title)
-    plt.plot(ks, acc_scores, label='accuracy')
-    plt.axhline(highest_acc, color='red', linestyle='dashed', linewidth=2)
-    plt.axhline(np.mean(np.array(acc_scores)), color='k', linestyle='dashed', linewidth=2)
-    plt.legend()
-    plt.show()
-    fig.savefig('hw6/results/result-gmm-accuracy.png', dpi=fig.dpi)
+    # Plt results
+    centers = kmeans.cluster_centers_()
+    pca_center = PCA(n_components=2, whiten=False)
+    reduced_centers = pca_center.fit_transform(centers)
+    kmeans.visualize(reduced_X_train, Y_train, y_kmeans, reduced_centers)
 
-    save_to_csv('knn-best-acc-scratch.csv', stored_accuracy)
