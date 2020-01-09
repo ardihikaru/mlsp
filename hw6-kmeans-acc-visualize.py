@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA
 # import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()  # for plot styling
 import numpy as np
-from datetime import datetime
+
 # from sklearn.cluster import KMeans
 from hw6.libs.algo.kmeans import MyKMeans
 
@@ -34,7 +34,6 @@ if __name__ == '__main__':
     pca = PCA(n_components=2, whiten=False)
     reduced_X_train = pca.fit_transform(X_train)
 
-    t0 = datetime.now()
     unique_labels = get_unique_list(Y_train)
     kmeans = MyKMeans(n_clusters=len(unique_labels)) # n_clusters = total number of unique digits (labels)
 
@@ -43,30 +42,18 @@ if __name__ == '__main__':
     Default: DISABLED; you may enable this. 
     RESULT: In clustering, PCA does not affect the accuracy!
     '''
-    # pca_x_train = PCA(n_components=2, whiten=False)
+    # pca_x_train = PCA(n_components=64, whiten=False)
     # X_train = pca_x_train.fit_transform(X_train)
 
-    # Start KMeans: Sklearn
-    highest_acc = 0.0
-    for i in range(K):
-        kmeans.fit(X_train)
-        y_kmeans = kmeans.predict(X_train)
-        accuracy = kmeans.eval_acc(y_kmeans, Y_train)
-        acc_scores.append(accuracy)
-        highest_acc = accuracy if accuracy > highest_acc else highest_acc
+    # Sample without looping.
+    kmeans.fit(X_train)
+    y_kmeans = kmeans.predict(X_train)
+    accuracy = kmeans.eval_acc(y_kmeans, Y_train)
+    print(" >> accuracy = ", accuracy)
 
-    elapsed_time = datetime.now() - t0
+    # Plt results
+    centers = kmeans.cluster_centers_()
+    pca_center = PCA(n_components=2, whiten=False)
+    reduced_centers = pca_center.fit_transform(centers)
+    kmeans.visualize(reduced_X_train, Y_train, y_kmeans, reduced_centers)
 
-    fig = plt.figure()
-    mean_acc = str(round(np.mean(np.array(acc_scores)), 2))
-    title = "Highest (Red) = " + str(round(highest_acc, 2)) + "; AVG (Black) = " + mean_acc
-    plt.title(title)
-    plt.plot(ks, acc_scores, label='accuracy')
-    plt.axhline(highest_acc, color='red', linestyle='dashed', linewidth=2)
-    plt.axhline(np.mean(np.array(acc_scores)), color='k', linestyle='dashed', linewidth=2)
-    plt.legend()
-    plt.show()
-    fig.savefig('hw6/results/result-kmeans-accuracy.png', dpi=fig.dpi)
-
-    save_to_csv('kmeans-acc.csv', acc_scores, "hw6")
-    save_to_csv('kmeans-exec-time.csv', [elapsed_time.total_seconds()], "hw6")
