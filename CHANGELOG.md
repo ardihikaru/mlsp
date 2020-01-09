@@ -1,3 +1,8 @@
+## 6.1.0 (一月 09, 2020)
+  - added performance evaluation: accuracy & execution times
+  - seperated vizualization code, instead of disabled
+  - Merge branch 'release-6.0' into feature/hw6
+
 ## 6.0 (一月 09, 2020)
   - finished coding! added testbed for different n_clusters
   - added gmm: testbed accuracy

@@ -1,3 +1,4 @@
+# pip install mlxtend
 from mlxtend.data import loadlocal_mnist
 import os
 
