@@ -1,3 +1,7 @@
+## 6.1.1 (一月 09, 2020)
+  - removed unused codes
+  - Merge branch 'release-6.1' into feature/hw6
+
 ## 6.1.0 (一月 09, 2020)
   - added performance evaluation: accuracy & execution times
   - seperated vizualization code, instead of disabled
